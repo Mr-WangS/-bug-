@@ -6,6 +6,7 @@ chrome.runtime.onInstalled.addListener(function(){
   });
 });
 
+
 chrome.contextMenus.onClicked.addListener(function(info, tab){
   if(info.menuItemId == 'saveall'){
     chrome.tabs.executeScript(tab.id, {file: 'main.js'}, function(results){
