@@ -7,7 +7,9 @@ $(document).ready(function(){
 		 if(request.cmd=='notify'){
 			notify(request.type);
 			sendResponse('ok');
-		}
+         }else if(request.cmd=='second'){
+             secondMesage()
+         }
 	})
 });
 
@@ -107,3 +109,24 @@ chrome.notifications.getAll(function(object,notifications){
 // });
 
 
+function secondMesage() {
+    if (window.Notification) {
+        var options={
+            type:"image",
+            dir: "ltr",  //控制方向，据说目前浏览器还不支持
+            lang: "utf-8",
+            data:"456",
+            vibrate:[200,100,200],
+            icon: "icon128.png",
+            image:"icon128.png",
+            body: "，请休息一下吧电脑使用一小时了，请休息一下吧电脑使用一小时了，请休息一下吧电脑使用一小时了，",
+        };
+        var notification = new Notification("Hi，帅哥：",options);
+        notification.onclick = function() {
+            window.open("http://www.baidu.com","_blank")
+            notification.close();
+        };
+    } else {
+        alert('浏览器不支持Notification');
+    }
+}
